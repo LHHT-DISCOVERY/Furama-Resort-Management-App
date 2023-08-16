@@ -1,56 +1,24 @@
 package com.example.furamaresortmanagementapp.service.impl;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.security.core.GrantedAuthority;
+import com.example.furamaresortmanagementapp.model.employee.Account;
+import com.example.furamaresortmanagementapp.repository.IAccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-
-
-public class JwtAccountDetailServiceImpl implements UserDetails {
-    private static final long serialVersionUID = 1L;
-    private String username;
-    private Boolean enable;
-    @JsonIgnore
-    private String password;
-    private List<GrantedAuthority> grantedAuthorities = null;
-
-//    public static JwtAccountDetailsImpl build(Account account){
-//    }
+@Service
+public class JwtAccountDetailServiceImpl implements UserDetailsService {
+    @Autowired
+    private IAccountRepository iAccountRepository;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return grantedAuthorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enable;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Account account = iAccountRepository.findAllByUsername(username);
+        if (account == null){
+            throw new UsernameNotFoundException("User " + username + " Was not found in database");
+        }
+        return JwtAccountDetailsImpl.build(account);
     }
 }

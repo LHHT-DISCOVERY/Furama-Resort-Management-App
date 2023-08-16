@@ -13,6 +13,8 @@ public class Account {
     @Column(columnDefinition = "varchar(45)", nullable = false)
     private String accountName;
 
+    private Boolean enable;
+
     @Column(columnDefinition = "varchar(45)", nullable = false)
     private String password;
 
@@ -23,10 +25,19 @@ public class Account {
     public Account() {
     }
 
-    public Account(String accountName, String password, Set<AccountRole> accountRoles) {
+    public Account(String accountName, Boolean enable, String password, Set<AccountRole> accountRoles) {
         this.accountName = accountName;
+        this.enable = enable;
         this.password = password;
         this.accountRoles = accountRoles;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 
     public String getAccountName() {
