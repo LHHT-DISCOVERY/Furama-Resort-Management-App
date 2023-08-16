@@ -1,4 +1,4 @@
-package com.example.furamaresortmanagementapp.JWT;
+package com.example.furamaresortmanagementapp.jwt;
 
 import io.jsonwebtoken.*;
 
