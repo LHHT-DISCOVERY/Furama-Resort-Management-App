@@ -1,9 +1,9 @@
 package com.example.furamaresortmanagementapp.model.customer;
 
 import com.example.furamaresortmanagementapp.model.contract.Contract;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;

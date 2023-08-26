@@ -4,10 +4,10 @@ import com.example.furamaresortmanagementapp.model.customer.Customer;
 import com.example.furamaresortmanagementapp.model.customer.CustomerType;
 import com.example.furamaresortmanagementapp.model.employee.Employee;
 import com.example.furamaresortmanagementapp.model.service.Service;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 

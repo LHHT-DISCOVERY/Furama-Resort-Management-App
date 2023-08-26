@@ -1,7 +1,7 @@
 package com.example.furamaresortmanagementapp.model.service;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.util.Set;
 

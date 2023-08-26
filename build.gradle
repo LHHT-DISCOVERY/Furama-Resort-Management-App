@@ -1,14 +1,14 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.1.2'
-    id 'io.spring.dependency-management' version '1.1.2'
+    id 'org.springframework.boot' version '2.7.1'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = '1.8'
 }
 
 repositories {
@@ -16,34 +16,58 @@ repositories {
 }
 
 dependencies {
-
-
-
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    using Http security
+
+    //    Phải có để sử dụng import javax.validation;
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Theo dõi và quản lý ứng dụng của mình từ xa, chưa biết để làm gì ??
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    //  Sử dụng công nghệ gửi mail trong spring boot
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    //  Cần thiết để kết nối các đối tượng sd hibernate ( sd được các anotation như @Id , @Column)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Giao tiếp với các dịch vụ OAuth 2.0
+    // (chẳng hạn như Facebook, Google, hoặc một máy chủ OAuth2 tùy chỉnh)
+    // cho phép bạn triển khai cả phía khách hàng và phía máy chủ của một ứng dụng OAuth2 trong một ứng dụng Spring Boot.
+    // Bạn có thể sử dụng chúng để tạo ứng dụng cho phép người dùng xác thực và tương tác với các dịch vụ bảo vệ bằng OAuth2
+    // và để xây dựng các ứng dụng API yêu cầu xác thực và ủy quyền đối với các yêu cầu từ phía khách hàng.
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
-
-// using security
-    testImplementation 'org.springframework.security:spring-security-test'
+    // Sử dụng security của spring boot
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
-    implementation group: 'org.springframework.security', name: 'spring-security-config', version: '6.1.2'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // Chưa biết cần để làm gì
+    implementation 'org.modelmapper:modelmapper:3.1.1'
+
+    //thư viên kết nối với MYSQL - Nếu sảy ra lỗi TOMCAT ko build được ứng dụng @@
+    // ko có thì đôi khi lỗi với application.properties (Error: com.mysql.cj.jdbc.Driver)
+    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.0.33'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Chưa biết cần để làm gì
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.modelmapper.extensions:modelmapper-spring:3.1.1'
 
 
-//    DI using WebSecurityConfigurerAdapter
-    implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.3.0.RELEASE'
-
-
-//	using JWT
+    // sử dụng để import io.jsonwebtoken
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+    // Chưa biết cần để làm gì
+    implementation group: 'org.springframework', name: 'spring-context-support', version: '5.2.12.RELEASE'
+
+    // Using GG API
+    implementation 'com.google.api-client:google-api-client:1.30.9'
+
+    //     Lưu ý khi Dependency  trong build gradle cần lưu ý thư viện Dependency  và cách import ở các class tương ứng .
+    //     lưu ý import Javax chứ ko phải là jakarta
 }
 
 tasks.named('test') {

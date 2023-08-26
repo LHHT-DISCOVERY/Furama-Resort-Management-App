@@ -1,7 +1,8 @@
 package com.example.furamaresortmanagementapp.model.contract;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ContractDetail {

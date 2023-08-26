@@ -1,10 +1,9 @@
 package com.example.furamaresortmanagementapp.model.employee;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
+import javax.persistence.*;
+
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity

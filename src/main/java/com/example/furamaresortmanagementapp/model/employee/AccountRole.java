@@ -1,6 +1,7 @@
 package com.example.furamaresortmanagementapp.model.employee;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 public class AccountRole {

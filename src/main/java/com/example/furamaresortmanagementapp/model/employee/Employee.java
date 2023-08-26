@@ -1,13 +1,11 @@
 package com.example.furamaresortmanagementapp.model.employee;
 
 import com.example.furamaresortmanagementapp.model.contract.Contract;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Set;
 
