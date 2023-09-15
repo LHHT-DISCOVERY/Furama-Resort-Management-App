@@ -7,18 +7,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
-public class JwtAccountDetailServiceImpl implements UserDetailsService {
+public class AccountDetailServiceImpl implements UserDetailsService {
+
     @Autowired
-    private IAccountRepository iAccountRepository;
+    IAccountRepository accountRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = iAccountRepository.findAllByUsername(username);
-        if (account == null){
-            throw new UsernameNotFoundException("User " + username + " Was not found in database");
+    @Transactional
+    public UserDetails loadUserByUsername(String username)  {
+        Account account = accountRepository.findAccountByUserName(username);
+        if(account==null){
+            throw new UsernameNotFoundException("User " + username + " was not found in the database");
         }
-        return JwtAccountDetailsImpl.build(account);
+        return AccountDetailsImpl.build(account);
     }
 }

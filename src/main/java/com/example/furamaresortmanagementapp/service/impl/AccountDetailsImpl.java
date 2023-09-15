@@ -12,33 +12,43 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 
-public class JwtAccountDetailsImpl implements UserDetails {
-    private static final long serialVersionUID = 1L;
-    private String username;
+public class AccountDetailsImpl implements UserDetails {
 
-    private Boolean enable;
+    private static final long serialVersionUID = 1L;
+    private Integer id;
+    private String username;
+    private Boolean enabled;
 
     @JsonIgnore
     private String password;
-    private List<GrantedAuthority> grantedAuthorities = null;
+    List<GrantedAuthority> authorities = null;
 
-    public JwtAccountDetailsImpl(String username, Boolean enable, String password, List<GrantedAuthority> grantedAuthorities) {
+    public AccountDetailsImpl( String username, String password,
+                              List<GrantedAuthority> authorities,Boolean enabled) {
         this.username = username;
-        this.enable = enable;
         this.password = password;
-        this.grantedAuthorities = grantedAuthorities;
+        this.authorities = authorities;
+        this.enabled = enabled;
     }
 
-    public static JwtAccountDetailsImpl build(Account account) {
+    public static AccountDetailsImpl build(Account account) {
         List<GrantedAuthority> authorities = account.getAccountRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRole().getRoleName()))
                 .collect(Collectors.toList());
-        return new JwtAccountDetailsImpl(account.getAccountName(), account.getEnable(), account.getPassword(), authorities);
+        return new AccountDetailsImpl(
+                account.getAccountName(),
+                account.getPassword(),
+                authorities,
+                account.getEnable());
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return grantedAuthorities;
+        return authorities;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
 
@@ -69,19 +79,16 @@ public class JwtAccountDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enable;
+        return enabled;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
+        if (this == o)
             return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || getClass() != o.getClass())
             return false;
-        }
-        JwtAccountDetailsImpl account = (JwtAccountDetailsImpl) o;
-        return Objects.equals(username, account.username);
+        AccountDetailsImpl account = (AccountDetailsImpl) o;
+        return Objects.equals(id, account.id);
     }
-
 }

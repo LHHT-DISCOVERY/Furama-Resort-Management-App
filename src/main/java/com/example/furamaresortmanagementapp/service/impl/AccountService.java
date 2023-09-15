@@ -12,6 +12,6 @@ public class AccountService implements IAccountService {
     IAccountRepository iAccountRepository;
     @Override
     public Account findAllByUsername(String username) {
-        return iAccountRepository.findAllByUsername(username);
+        return iAccountRepository.findAccountByUserName(username);
     }
 }

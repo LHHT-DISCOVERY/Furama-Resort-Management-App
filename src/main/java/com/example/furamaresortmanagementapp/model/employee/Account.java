@@ -1,9 +1,10 @@
 package com.example.furamaresortmanagementapp.model.employee;
 
 
-import javax.persistence.*;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ public class Account {
 
     private Boolean enable;
 
-    @Column(columnDefinition = "varchar(45)", nullable = false)
+    @Column(nullable = false)
     private String password;
 
 

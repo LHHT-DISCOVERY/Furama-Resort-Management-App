@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface IAccountRepository extends JpaRepository<Account, String> {
     //     đây là viết ra câu lệnh sql thuần'= , còn nếu ko dùng hql là bỏ nqtiveQuery
     //    @Query(nativeQuery = true, "câu lệnh sql")
-    @Query(nativeQuery = true, value = "select*from account where username = ? ")
-    Account findAllByUsername(String username);
+    @Query(nativeQuery = true, value = "select*from account where account_name = ? ")
+    Account findAccountByUserName(String username);
 }
