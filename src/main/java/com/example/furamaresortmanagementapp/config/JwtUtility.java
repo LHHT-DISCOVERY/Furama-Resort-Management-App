@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.util.Date;
 
+// sinh ra mã token , jwtSecret = secretkey sẽ gộp vs header và payload mã hóa thành chuỗi token
 @Component
 public class JwtUtility implements Serializable {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtility.class);

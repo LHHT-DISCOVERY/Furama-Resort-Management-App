@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//    autowired 2 thèn này vào
     @Autowired
     private AccountDetailServiceImpl jwtAccountDetailService;
 

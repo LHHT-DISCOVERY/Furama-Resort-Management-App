@@ -46,6 +46,7 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+//    Filter cấu hình header get Authorization lấy ra chuỗi token và start bằng chuỗi  Bearer
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
 
@@ -55,4 +56,5 @@ public class JwtFilter extends OncePerRequestFilter {
 
         return null;
     }
+
 }
