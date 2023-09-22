@@ -6,7 +6,6 @@ import com.example.furamaresortmanagementapp.request.LoginRequest;
 import com.example.furamaresortmanagementapp.response.JwtResponse;
 import com.example.furamaresortmanagementapp.service.IAccountService;
 import com.example.furamaresortmanagementapp.service.IRoleService;
-
 import com.example.furamaresortmanagementapp.service.impl.AccountDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +51,7 @@ public class SecurityController {
 
         Account account = iAccountService.findAllByUsername(loginRequest.getUsername());
 
-
+//        thông tin trả về khi login vs jwt
         return ResponseEntity.ok(
                 new JwtResponse(
                         jwt,
