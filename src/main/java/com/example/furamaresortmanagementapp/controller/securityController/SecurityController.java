@@ -50,13 +50,15 @@ public class SecurityController {
                 .collect(Collectors.toList());
 
         Account account = iAccountService.findAllByUsername(loginRequest.getUsername());
-
-//        thông tin trả về khi login vs jwt
         return ResponseEntity.ok(
                 new JwtResponse(
                         jwt,
                         userDetails.getUsername(),
                         roles)
         );
+
+//        thông tin trả về khi login vs jwt
+
+
     }
 }
