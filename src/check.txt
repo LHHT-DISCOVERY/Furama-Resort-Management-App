@@ -10,6 +10,6 @@ test codesss trsjs hello test2
 helo merge lai
 
 
-kkk day la nhanh 2
+kkk day la nhanh 2 , đây code them ne
 
 ok Hieu
