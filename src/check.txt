@@ -9,6 +9,6 @@ test codesss helol test1 . muon merge sang nhanh 2
 test codesss trsjs hello test2
 helo merge lai
 
-kkkk đây là nhanh  1
+kkkk đây là nhanh  1 . code nhánh 1 thêm nè
 
 ok Hieu
