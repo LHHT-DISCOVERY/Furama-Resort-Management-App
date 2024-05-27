@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.1'
+    id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
@@ -8,7 +8,7 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '1.8'
+    sourceCompatibility = '17'
 }
 
 repositories {
@@ -21,6 +21,7 @@ dependencies {
 
     //    Phải có để sử dụng import javax.validation;
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
 
     // Theo dõi và quản lý ứng dụng của mình từ xa, chưa biết để làm gì ??
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -40,10 +41,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
     // Sử dụng security của spring boot
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    testImplementation 'org.springframework.security:spring-security-test'
+    implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.3.4.RELEASE'
 
-    // Chưa biết cần để làm gì
     implementation 'org.modelmapper:modelmapper:3.1.1'
 
     //thư viên kết nối với MYSQL - Nếu sảy ra lỗi TOMCAT ko build được ứng dụng @@
@@ -52,13 +51,15 @@ dependencies {
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-    // Chưa biết cần để làm gì
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.modelmapper.extensions:modelmapper-spring:3.1.1'
 
 
+
     // sử dụng để import io.jsonwebtoken
-    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 
     // Chưa biết cần để làm gì
     implementation group: 'org.springframework', name: 'spring-context-support', version: '5.2.12.RELEASE'
@@ -67,7 +68,13 @@ dependencies {
     implementation 'com.google.api-client:google-api-client:1.30.9'
 
     //     Lưu ý khi Dependency  trong build gradle cần lưu ý thư viện Dependency  và cách import ở các class tương ứng .
-    //     lưu ý import Javax chứ ko phải là jakarta
+    //     lưu ý import Javax (java 1.8), jakarta (java 17)
+
+//    using lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+
 }
 
 tasks.named('test') {
